@@ -16,9 +16,12 @@
                 left:0px;
             }
             .row {clear: both; max-width: 1200px; margin: 0 auto;}
+            form{width: 100%;}
             .col_p-20_2{width:49.166666666667%; float:left; margin-right:1.6666666666667%;}
             .col_p-20_4{float:left; margin-right:1.6666666666667%; width:23.75%;}
+            .col_full{float:left; width: 100%; margin: 0;} 
             .last{margin-right: 0px !important;}
+            .clear{clear: both; float: left; width: 100%}
             @media handheld, only screen and (max-width: 767px) {
                 .col_p-20_2,.col_p-20_4{width:100%}
             }
@@ -31,9 +34,13 @@
     <body>
         <div class="container">
             <div class="row">
-                <h2>LabeMotion - Column Layout - CSS Generator code</h2>
-                <h4>Make your responsive layout</h4>
-                <form action = "<?php echo $_SERVER['PHP_SELF']; ?>" method = "GET"> 
+                <div class="col_full">
+                    <h2>LabeMotion - Column Layout - CSS Generator code</h2>
+                    <h4>Make your responsive layout</h4>
+                </div>
+                <div class="clear"></div>
+                <div class="col_full">
+                    <form action = "<?php echo $_SERVER['PHP_SELF']; ?>" method = "GET"> 
                     <div class="col_p-20_2">
                         <h3>Prefijo de la clase / Prefix class.</h3>
                         Columnas anidadas:
@@ -45,6 +52,7 @@
                         <input type="text" name="prefP" id="prefP" /><br />
                         Parallel column. 
                     </div>
+                    <div class="clear"></div>
                     <div class="col_p-20_4">
                         Ancho de pagina<br />
                         <input type="text" name="nwidth" id="nwidth" />px<br />
@@ -64,12 +72,14 @@
                         <input type="submit" value="Crear" />
                         <input type='hidden' value='yes' name='calc' />
                     </div>
-                </form>                
+                </form> 
+                </div>
+                               
             </div>
         </div>
         <div class="container">
             <div class="row">
-                <p></p>
+                <p>See below the code</p>
                 <hr />
             </div>
         </div>
@@ -99,7 +109,7 @@
                         for ($x = 1; $x <= $ncol; $x++) {
                             if ($x == $ncol)
                                 continue;
-                            $style.= ".". $prefN."-" . $swcol . "_" . $x . ", ";
+                            $style.= "." . $prefN . "-" . $swcol . "_" . $x . ", ";
                         }
                         $style = trim($style, ", ");
                         echo $style;
@@ -109,9 +119,9 @@
                             $zx = (($xc * $x) + ($swcol * ($x - $y))) / $ncol;
                             #if ($x == $ncol)
                             #continue;
-                            echo ".". $prefN."-" . $swcol . "_" . ($x) . "{width:" . $zx . "%;}<br>\n";
+                            echo "." . $prefN . "-" . $swcol . "_" . ($x) . "{width:" . $zx . "%;}<br>\n";
                         }
-                        echo ".". $prefN."-" . $swcol . "_$ncol{float:left;}<br>\n";
+                        echo "." . $prefN . "-" . $swcol . "_$ncol{float:left;}<br>\n";
                         echo "/*--------------------------------*/<br>\n";
                         echo "<h3>/* Parallel column layout - Diseño de columna paralela */</h3>\n";
                         echo "/*--------------------------------*/<br>\n";
@@ -119,15 +129,15 @@
                         for ($x = 1; $x <= $ncol; $x++) {
                             if ($x == $ncol)
                                 continue;
-                            $style.= ".". $prefP."-" . $swcol . "_" . ($x + $y) . ", ";
+                            $style.= "." . $prefP . "-" . $swcol . "_" . ($x + $y) . ", ";
                         }
                         $style = trim($style, ", ");
                         echo $style;
                         echo " {float:left; margin-right:" . $spc . "%;}<br>\n";
-                        echo ".". $prefP."-" . $swcol . "_$y{float:left;}<br>\n";
+                        echo "." . $prefP . "-" . $swcol . "_$y{float:left;}<br>\n";
                         for ($x = 1, $i = $xcol; $x <= $ncol; $x++, $i--) {
                             $sx = (($nwidth - (($x - $y) * $swcol)) / $x) / $ncol;
-                            echo ".". $prefP."-" . $swcol . "_" . $x . "{width:" . $sx . "%;}<br>\n";
+                            echo "." . $prefP . "-" . $swcol . "_" . $x . "{width:" . $sx . "%;}<br>\n";
                         }
                         echo "/*----------------last layout----------------*/<br>\n";
                         echo ".last{margin-right: 0px !important;}<br>\n";
@@ -136,14 +146,14 @@
                         echo "@media handheld, only screen and (max-width: 767px) {<br>\n";
                         $style = "";
                         for ($x = 1; $x <= $ncol; $x++) {
-                            $style.= ".". $prefN."-" . $swcol . "_" . $x . ", ";
+                            $style.= "." . $prefN . "-" . $swcol . "_" . $x . ", ";
                         }
                         $style = trim($style, ", ");
                         echo $style;
                         echo " {float:left; width:100%; margin:0px; padding:0px}<br>\n";
                         $style = "";
                         for ($x = 1; $x <= $ncol; $x++) {
-                            $style.= ".". $prefP."-" . $swcol . "_" . $x . ", ";
+                            $style.= "." . $prefP . "-" . $swcol . "_" . $x . ", ";
                         }
                         $style = trim($style, ", ");
                         echo $style;
