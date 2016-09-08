@@ -10,6 +10,7 @@
             form{width: 100%;}            
             label{font-weight: bold; color: #4f80bc;}
             span{color:#225072;}
+            pre {display: block; font-family: monospace; white-space: pre; margin: 1em 0;} 
             /* Start - Inicio */
             /*--------clear: both; max-width: 1200px; margin: 0 auto;------------------------*/
             .container{display: block; clear: both; width: 100%; min-height: 10px; margin: 0 auto; padding: 0; position:relative; left:0px}              
@@ -71,10 +72,49 @@
         </style>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/themes/smoothness/jquery-ui.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>        
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"></script>              
+        <script>
+            $(function () {                                
+                $("#num-col").slider({
+                    range: "min",
+                    value: 3,
+                    min: 2,
+                    max: 16,
+                    slide: function (event, ui) {
+                        $("#ncol").val(ui.value);
+                    }
+                });
+                $("#ncol").val($("#num-col").slider("value"));
 
+                $("#col-space").slider({
+                    range: "min",
+                    value: 10,
+                    min: 5,
+                    max: 60,
+                    step: 5,
+                    slide: function (event, ui) {
+                        $("#swcol").val(ui.value);
+                    }
+                });
+                $("#swcol").val($("#col-space").slider("value"));
+
+                $("#botton-space").slider({
+                    range: "min",
+                    value: 10,
+                    min: 5,
+                    max: 80,
+                    step: 5,
+                    slide: function (event, ui) {
+                        $("#Btspace").val(ui.value);
+                    }
+                });
+                $("#Btspace").val($("#botton-space").slider("value"));
+            });
+
+        </script>
     </head>
     <body>
+        <a href="https://github.com/labemotion/CSS-Responsive"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
         <div class="container">
             <div class="row">                
                 <h2>LabeMotion - Column or grid Layout - CSS Generator code</h2>
@@ -82,51 +122,53 @@
                 <div class="clear"></div>                
                 <form action = "<?php echo $_SERVER['PHP_SELF']; ?>" method = "GET"> 
                     <div class="col_full"><h3>Prefijo de la clase / Prefix class.</h3></div>
-                    <div class="iguales-20_3">                            
-                        <label>Columnas o re anidadas:</label><br />
+                    <div class="iguales-20_2">                            
+                        <label>Columnas anidadas (Progressive width):</label><br />
                         <input type="text" name="prefN" id="prefN" /><br />
                         <span>Nested column/grid.</span> 
                     </div>
-                    <div class="iguales-20_3">
-                        <label>Columnas paralelas:</label><br />
+                    <div class="iguales-20_2 last">
+                        <label>Columnas gemelas (Identical width):</label><br />
                         <input type="text" name="prefP" id="prefP" /><br />
                         <span>Twin column/grid.</span>
-                    </div>
-                    <div class="iguales-20_3 last">
-                        <label>Espaci inferior:</label><br />
-                        <input type="text" name="Btspace" id="Btspace" /><br />
-                        <span>Bottom space.</span>
-                    </div>
+                    </div>                   
                     <div class="clear"></div>
-                    <div class="iguales-20_4">
+                    <div class="iguales-20_2">
                         <label>Ancho de pagina:</label><br />
-                        <input type="text" name="nwidth" id="nwidth" />px<br />
+                        <input type="text" name="nwidth" id="nwidth" />px<br />                        
                         <span>Page width.</span>
                     </div>
-                    <div class="iguales-20_4">
+                    <div class="iguales-20_2 last">
                         <label>Cantidad de columnas:</label><br />
-                        <input type="text" name="ncol" id="ncol" /><br />
+                        <input type="text" name="ncol" id="ncol" readonly/><br />
+                        <div id="num-col"></div>
                         <span>Number of columns.</span>
                     </div>
-                    <div class="iguales-20_4">
+                    <div class="iguales-20_2">
                         <label>Distancia entre columnas:</label><br />
                         <input type="text" name="swcol" id="swcol" />px<br />
+                        <div id="col-space"></div>
                         <span>Distance between columns.</span>
                     </div>
-                    <div class="iguales-20_4 last"><br/>
+                    <div class="iguales-20_2 last">
+                        <label>Espacio inferior:</label><br />
+                        <input type="text" name="Btspace" id="Btspace" readonly/>px<br />
+                        <div id="botton-space"></div>
+                        <span>Bottom space.</span>
+                    </div>                   
+                    <div class="iguales-20_3 last"><br/>
                         <input type="submit" value="Crear" />
                         <input type='hidden' value='yes' name='calc' />
                     </div>
                 </form>                 
             </div>
         </div>
+
         <div class="container">
             <div class="row">
                 <h2>Vea su codigo debajo - See below the code</h2>
                 <hr />
             </div>
-        </div>
-        <div class="container">
             <div class="row">
                 <?php
                 $y = 1;
@@ -210,6 +252,10 @@
                 }
                 ?> 
             </div>
-        </div>        
+        </div>  
+
+        
+            
+        </div>
     </body>
 </html>
