@@ -125,12 +125,12 @@
                     <div class="iguales-20_2">                            
                         <label>Columnas anidadas (Progressive width):</label><br />
                         <input type="text" name="prefN" id="prefN" /><br />
-                        <span>Nested column/grid.</span> 
+                        <span>Prefix class - Nested column/grid.</span> 
                     </div>
                     <div class="iguales-20_2 last">
                         <label>Columnas gemelas (Identical width):</label><br />
                         <input type="text" name="prefP" id="prefP" /><br />
-                        <span>Twin column/grid.</span>
+                        <span>Prefix class - Twin column/grid.</span>
                     </div>                   
                     <div class="clear"></div>
                     <div class="iguales-20_2">
